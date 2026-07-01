@@ -1,0 +1,14 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec\\.ts$",
+  "setupFiles": ["<rootDir>/test/setup-e2e.ts"],
+  "transform": {
+    "^.+\\.ts$": ["ts-jest", { "tsconfig": "<rootDir>/tsconfig.spec.json" }]
+  },
+  "moduleNameMapper": {
+    "^@cms/types$": "<rootDir>/../../packages/types/src/index.ts",
+    "^@cms/database$": "<rootDir>/../../packages/database/src/index.ts"
+  }
+}
