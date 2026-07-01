@@ -64,12 +64,12 @@ To pick up an epic: check off its tasks below in the PR that implements the slic
 ### Epic 1.0 — Platform foundations (cross-cutting)
 Consistent primitives every later slice builds on.
 
-- [ ] Standardize list responses: generic `PaginatedResponse<T>` in `@cms/types`; add `page`/`pageSize`/`sort` query DTOs; retrofit `GET /products`.
-- [ ] Global exception filter emitting the existing `ApiError` envelope; consistent validation error shape.
-- [ ] OpenAPI/Swagger via `@nestjs/swagger` served at `/docs`.
-- [ ] Test harness: Jest + Supertest e2e for the API; Vitest + React Testing Library for storefront components.
-- [ ] Structured logging (pino / `nestjs-pino`) + request IDs; `/health` endpoint.
-- [ ] Basic rate limiting (`@nestjs/throttler`) on mutating routes.
+- [x] Standardize list responses: generic `PaginatedResponse<T>` in `@cms/types`; add `page`/`pageSize`/`sort` query DTOs; retrofit `GET /products`.
+- [x] Global exception filter emitting the existing `ApiError` envelope; consistent validation error shape.
+- [x] OpenAPI/Swagger via `@nestjs/swagger` served at `/docs`.
+- [x] Test harness: Jest + Supertest e2e for the API; Vitest + React Testing Library for storefront components.
+- [x] Structured logging (pino / `nestjs-pino`) + request IDs; `/health` endpoint.
+- [x] Basic rate limiting (`@nestjs/throttler`) on mutating routes.
 
 ### Epic 1.1 — Auth & RBAC (foundational)
 JWT auth for customers and staff; guards protecting every mutation.

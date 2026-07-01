@@ -52,6 +52,9 @@ PostgreSQL → Prisma → NestJS Products API → HTTP/JSON → Next.js storefro
 | Admin API  | NestJS 11                                    |
 | ORM / DB   | Prisma 7 (pg driver adapter) + PostgreSQL 16 |
 | Styling    | Tailwind CSS + shadcn-style UI               |
+| API docs   | OpenAPI / Swagger (`@nestjs/swagger`)        |
+| Logging    | pino (`nestjs-pino`) + request IDs           |
+| Testing    | Jest + Supertest (API), Vitest + RTL (web)   |
 | Monorepo   | pnpm workspaces                              |
 | Local DB   | Docker Compose                               |
 
@@ -85,6 +88,8 @@ Then open:
 
 - Storefront → <http://localhost:3000> (product grid at `/products`)
 - Admin API → <http://localhost:4000/products>
+- API docs (Swagger UI) → <http://localhost:4000/docs>
+- Health check → <http://localhost:4000/health>
 
 ## Root scripts
 
@@ -97,6 +102,7 @@ Then open:
 | `pnpm db:studio`  | Open Prisma Studio                                      |
 | `pnpm dev`        | Build shared packages, then run both apps in watch mode |
 | `pnpm build`      | Build every workspace in dependency order               |
+| `pnpm test`       | Run all workspace test suites (Jest e2e + Vitest)       |
 | `pnpm lint`       | Lint the monorepo (ESLint flat config)                  |
 | `pnpm format`     | Format with Prettier                                    |
 
@@ -119,15 +125,38 @@ packages/
   types/          Shared TypeScript contracts (@cms/types)
 ```
 
+## Platform foundations
+
+Cross-cutting primitives every domain slice builds on (Roadmap Epic 1.0):
+
+- **Paginated lists** — collection endpoints return a generic
+  `PaginatedResponse<T>` (`{ data, meta }`) from `@cms/types`. `GET` list routes
+  accept `?page=`, `?pageSize=` (1–100), and `?sort=field:direction`
+  (e.g. `?sort=priceCents:asc`); sortable fields are allowlisted per resource.
+- **Consistent errors** — a global exception filter serializes every error into
+  the shared `ApiError` envelope (`statusCode`, `message`, `error`, `path`,
+  `timestamp`, `requestId`). Validation failures keep a field-level `message[]`.
+- **OpenAPI docs** — Swagger UI at `/docs`, raw spec at `/docs-json`
+  (`@nestjs/swagger`, auto-introspected from DTOs).
+- **Structured logging** — `nestjs-pino` request logging with per-request IDs.
+  Send `x-request-id` to reuse a trace id; it is always echoed on the response
+  and correlates with the `requestId` in error bodies.
+- **Health check** — liveness probe at `/health`.
+- **Rate limiting** — `@nestjs/throttler` guards all mutating routes
+  (POST/PATCH/PUT/DELETE); reads are never throttled. Tune with `THROTTLE_LIMIT`
+  / `THROTTLE_TTL`.
+- **Tests** — `pnpm test` runs Jest + Supertest e2e for the API and
+  Vitest + React Testing Library for storefront components.
+
 ## Products API (current slice)
 
-| Method | Route                 | Description                   |
-| ------ | --------------------- | ----------------------------- |
-| GET    | `/products`           | List active products          |
-| GET    | `/products/:idOrSlug` | Get one product by id or slug |
-| POST   | `/products`           | Create a product              |
-| PATCH  | `/products/:id`       | Update a product              |
-| DELETE | `/products/:id`       | Delete a product              |
+| Method | Route                 | Description                                         |
+| ------ | --------------------- | --------------------------------------------------- |
+| GET    | `/products`           | List active products (paginated: `page`/`pageSize`/`sort`) |
+| GET    | `/products/:idOrSlug` | Get one product by id or slug                       |
+| POST   | `/products`           | Create a product                                    |
+| PATCH  | `/products/:id`       | Update a product                                    |
+| DELETE | `/products/:id`       | Delete a product                                    |
 
 ## Roadmap
 

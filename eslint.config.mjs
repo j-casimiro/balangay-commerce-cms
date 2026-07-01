@@ -10,6 +10,8 @@ export default tseslint.config(
       '**/node_modules/**',
       '**/*.config.*',
       '**/generated/**',
+      // Next.js auto-generates this file and marks it "should not be edited".
+      '**/next-env.d.ts',
       'packages/database/prisma/**',
     ],
   },

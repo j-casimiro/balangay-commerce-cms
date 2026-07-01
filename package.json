@@ -17,6 +17,7 @@
     "db:studio": "pnpm --filter @cms/database run studio",
     "dev": "pnpm --filter \"./packages/*\" run build && pnpm -r --parallel run dev",
     "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md}\""
   },
