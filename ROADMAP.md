@@ -54,6 +54,9 @@ House rules that carry across the roadmap:
 - API dates are ISO strings at the JSON boundary.
 - The `ApiError` envelope in `packages/types/src/api.ts` is the standard error shape.
 - Mutations are role-guarded once auth lands (Epic 1.1).
+- **Commit per task, not per epic.** Make a focused commit as each checklist item
+  lands (check the box in that same commit) so the epic's PR reads as a series of
+  small, reviewable steps rather than one large diff.
 
 To pick up an epic: check off its tasks below in the PR that implements the slice.
 
