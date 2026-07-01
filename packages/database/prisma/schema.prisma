@@ -1,0 +1,42 @@
+// Single source of truth for the system's data schema (blueprint §4.I).
+// Both the storefront and the admin API consume the generated client + types
+// exclusively through the `@cms/database` package export.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("categories")
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  priceCents  Int
+  currency    String    @default("usd")
+  stock       Int       @default(0)
+  imageUrl    String?
+  active      Boolean   @default(true)
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@map("products")
+}
