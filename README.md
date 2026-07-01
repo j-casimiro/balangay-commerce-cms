@@ -1,8 +1,9 @@
-# Headless E-Commerce CMS
+# Balangay Commerce CMS
 
-An open-source, production-oriented headless e-commerce ecosystem: a Next.js
-storefront and a NestJS admin API, decoupled and communicating over a JSON REST
-API, backed by Prisma + PostgreSQL in a pnpm monorepo.
+Balangay Commerce CMS is an open-source, production-oriented headless
+e-commerce ecosystem: a Next.js storefront and a NestJS admin API, decoupled
+and communicating over a JSON REST API, backed by Prisma + PostgreSQL in a
+pnpm monorepo.
 
 This repository currently ships the full monorepo skeleton plus a working
 **Products vertical slice** proving the architecture end to end:
