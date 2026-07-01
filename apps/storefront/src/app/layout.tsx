@@ -4,7 +4,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Balangay Commerce CMS Storefront',
-  description: 'Headless e-commerce storefront powered by Next.js + NestJS + Prisma.',
+  description: 'e-commerce storefront powered by Next.js + NestJS + Prisma.',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

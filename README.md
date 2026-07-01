@@ -1,6 +1,6 @@
 # Balangay Commerce CMS
 
-Balangay Commerce CMS is an open-source, production-oriented headless
+Balangay Commerce CMS is an open-source, production-oriented
 e-commerce ecosystem: a Next.js storefront and a NestJS admin API, decoupled
 and communicating over a JSON REST API, backed by Prisma + PostgreSQL in a
 pnpm monorepo.
@@ -46,14 +46,14 @@ PostgreSQL → Prisma → NestJS Products API → HTTP/JSON → Next.js storefro
 
 ## Tech stack
 
-| Layer         | Technology                          |
-| ------------- | ----------------------------------- |
-| Storefront    | Next.js 15 (App Router), React 19   |
-| Admin API     | NestJS 11                           |
-| ORM / DB      | Prisma 7 (pg driver adapter) + PostgreSQL 16 |
-| Styling       | Tailwind CSS + shadcn-style UI      |
-| Monorepo      | pnpm workspaces                     |
-| Local DB      | Docker Compose                      |
+| Layer      | Technology                                   |
+| ---------- | -------------------------------------------- |
+| Storefront | Next.js 15 (App Router), React 19            |
+| Admin API  | NestJS 11                                    |
+| ORM / DB   | Prisma 7 (pg driver adapter) + PostgreSQL 16 |
+| Styling    | Tailwind CSS + shadcn-style UI               |
+| Monorepo   | pnpm workspaces                              |
+| Local DB   | Docker Compose                               |
 
 ## Prerequisites
 
@@ -84,29 +84,29 @@ pnpm dev
 Then open:
 
 - Storefront → <http://localhost:3000> (product grid at `/products`)
-- Admin API  → <http://localhost:4000/products>
+- Admin API → <http://localhost:4000/products>
 
 ## Root scripts
 
-| Script            | Description                                                   |
-| ----------------- | ------------------------------------------------------------ |
-| `pnpm db:up`      | Start the local PostgreSQL container (Docker Compose)        |
-| `pnpm db:down`    | Stop the container                                           |
-| `pnpm db:migrate` | Create & apply a dev migration (`prisma migrate dev`)        |
-| `pnpm db:seed`    | Seed demo categories & products                              |
-| `pnpm db:studio`  | Open Prisma Studio                                           |
-| `pnpm dev`        | Build shared packages, then run both apps in watch mode      |
-| `pnpm build`      | Build every workspace in dependency order                    |
-| `pnpm lint`       | Lint the monorepo (ESLint flat config)                       |
-| `pnpm format`     | Format with Prettier                                         |
+| Script            | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| `pnpm db:up`      | Start the local PostgreSQL container (Docker Compose)   |
+| `pnpm db:down`    | Stop the container                                      |
+| `pnpm db:migrate` | Create & apply a dev migration (`prisma migrate dev`)   |
+| `pnpm db:seed`    | Seed demo categories & products                         |
+| `pnpm db:studio`  | Open Prisma Studio                                      |
+| `pnpm dev`        | Build shared packages, then run both apps in watch mode |
+| `pnpm build`      | Build every workspace in dependency order               |
+| `pnpm lint`       | Lint the monorepo (ESLint flat config)                  |
+| `pnpm format`     | Format with Prettier                                    |
 
 ## Ports
 
-| Service     | Port |
-| ----------- | ---- |
-| Storefront  | 3000 |
-| Admin API   | 4000 |
-| PostgreSQL  | 5432 |
+| Service    | Port |
+| ---------- | ---- |
+| Storefront | 3000 |
+| Admin API  | 4000 |
+| PostgreSQL | 5432 |
 
 ## Workspace layout
 
@@ -121,13 +121,13 @@ packages/
 
 ## Products API (current slice)
 
-| Method | Route                    | Description                    |
-| ------ | ------------------------ | ------------------------------ |
-| GET    | `/products`              | List active products           |
-| GET    | `/products/:idOrSlug`    | Get one product by id or slug  |
-| POST   | `/products`              | Create a product               |
-| PATCH  | `/products/:id`          | Update a product               |
-| DELETE | `/products/:id`          | Delete a product               |
+| Method | Route                 | Description                   |
+| ------ | --------------------- | ----------------------------- |
+| GET    | `/products`           | List active products          |
+| GET    | `/products/:idOrSlug` | Get one product by id or slug |
+| POST   | `/products`           | Create a product              |
+| PATCH  | `/products/:id`       | Update a product              |
+| DELETE | `/products/:id`       | Delete a product              |
 
 ## Roadmap
 

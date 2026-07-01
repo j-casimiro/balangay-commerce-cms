@@ -2,7 +2,7 @@
   "name": "balangay-commerce-cms",
   "version": "0.1.0",
   "private": true,
-  "description": "Balangay Commerce CMS — open-source headless e-commerce CMS (Next.js storefront + NestJS admin API + Prisma/PostgreSQL)",
+  "description": "Balangay Commerce CMS — open-source e-commerce CMS (Next.js storefront + NestJS admin API + Prisma/PostgreSQL)",
   "packageManager": "pnpm@11.9.0",
   "engines": {
     "node": ">=20"
