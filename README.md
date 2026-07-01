@@ -49,7 +49,7 @@ PostgreSQL → Prisma → NestJS Products API → HTTP/JSON → Next.js storefro
 | ------------- | ----------------------------------- |
 | Storefront    | Next.js 15 (App Router), React 19   |
 | Admin API     | NestJS 11                           |
-| ORM / DB      | Prisma 6 + PostgreSQL 16            |
+| ORM / DB      | Prisma 7 (pg driver adapter) + PostgreSQL 16 |
 | Styling       | Tailwind CSS + shadcn-style UI      |
 | Monorepo      | pnpm workspaces                     |
 | Local DB      | Docker Compose                      |
